@@ -1,0 +1,33 @@
+info:
+  app:
+    encoding: '@project.build.sourceEncoding@'
+    id: 100
+    java:
+      version: '@java.version@'
+    name: '@project.name@'
+    response: https://test.api.com
+    version: '@project.version@'
+   
+server:
+  port: 10443
+  servlet:
+    context-path: /@project.name@/v1
+    
+spring:
+  config:
+    activate:
+      on-profile: dev, qa, prod
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+      settings:
+        trace: false
+        web-allow-others: false
+application:
+  security:
+    jwt:
+      secret-key: 404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970
+      expiration: 86400000 # a day
+      refresh-token:
+        expiration: 604800000 # 7 days
