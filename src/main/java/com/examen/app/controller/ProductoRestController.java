@@ -4,7 +4,6 @@ import java.util.Arrays;
 
 import javax.validation.Valid;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,19 +20,16 @@ import com.examen.app.model.ProductoRequestModel;
 import com.examen.app.model.ProductoUpdRequestModel;
 import com.examen.app.service.ProductosService;
 
-@CrossOrigin
+import lombok.RequiredArgsConstructor;
+
 @RestController
 @RequestMapping("/procesos")
+@RequiredArgsConstructor
 public class ProductoRestController {
 
 	private final Util util;
 
 	private final ProductosService productosService;
-
-	public ProductoRestController(final Util util, final ProductosService productosService) {
-		this.util = util;
-		this.productosService = productosService;
-	}
 
 	@PostMapping("/productos")
 	public Object saveProducto(@RequestBody @Valid ProductoRequestModel productoRequestModel) {
@@ -67,7 +63,7 @@ public class ProductoRestController {
 	}
 
 	@GetMapping("/productos/detalles/busquedas/{idProducto}")
-	public Object getProductosByID(@PathVariable("idProducto") Integer idProducto) {
+	public Object getProductosByID(@PathVariable(name = "idProducto", required = true) Integer idProducto) {
 		try {
 			Object o = this.productosService.getProductoById(idProducto);
 			return new ResponseService(HttpStatus.OK, util.getCodigo(), Constantes.OPERACION_200, util.getFolio(), o);
@@ -97,7 +93,7 @@ public class ProductoRestController {
 	}
 
 	@DeleteMapping("/productos/bajas/{idProducto}")
-	public Object deleteProducto(@PathVariable("idProducto") Integer idProducto) {
+	public Object deleteProducto(@PathVariable(name = "idProducto", required = true) Integer idProducto) {
 		try {
 			Object o = productosService.deleteProducto(idProducto);
 			return new ResponseService(HttpStatus.OK, util.getCodigo(), Constantes.OPERACION_200, util.getFolio(), o);
@@ -112,7 +108,7 @@ public class ProductoRestController {
 	}
 
 	@DeleteMapping("/productos/bajas")
-	public Object deleteProducto(ProductoUpdRequestModel productoUpdRequestModel) {
+	public Object deleteProducto(@Valid @RequestBody ProductoUpdRequestModel productoUpdRequestModel) {
 		try {
 			Object o = productosService.deleteProducto(productoUpdRequestModel);
 			return new ResponseService(HttpStatus.OK, util.getCodigo(), Constantes.OPERACION_200, util.getFolio(), o);

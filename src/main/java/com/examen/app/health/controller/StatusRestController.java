@@ -12,9 +12,11 @@ import com.examen.app.common.Constantes;
 import com.examen.app.common.Util;
 import com.examen.app.exceptionhandler.model.ResponseService;
 
+import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("/status")
+@RequiredArgsConstructor
 public class StatusRestController {
 
 	private final Util util;
@@ -24,10 +26,6 @@ public class StatusRestController {
 
 	@Value("${info.app.version}")
 	private String appVersion;
-
-	public StatusRestController(final Util util) {
-		this.util = util;
-	}
 
 	@GetMapping
 	@ResponseStatus(HttpStatus.OK)

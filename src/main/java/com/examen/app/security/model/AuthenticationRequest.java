@@ -11,8 +11,12 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class AuthenticationRequest implements Serializable{
+public class AuthenticationRequest implements Serializable {
 
-  private String username;
-  private String password;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private String username;
+	private String password;
 }

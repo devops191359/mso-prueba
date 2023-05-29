@@ -76,8 +76,8 @@ public class ProductosServiceImpl implements ProductosService {
 			productosEntity.setId(request.getId());
 			productosEntity.setNombre(request.getNombre());
 			productosEntity.setPrecio(request.getPrecio());
-			productosEntity.setStock(request.getCantidad());
-			this.productosDAO.saveAndFlush(productosEntity);
+			productosEntity.setStock(request.getStock());
+			productosEntity=this.productosDAO.saveAndFlush(productosEntity);
 			ProductoResponseModel productoResponseModel = new ProductoResponseModel();
 			productoResponseModel.setEstatus("El producto " + productosEntity.getId() + " se actualizo correctamente");
 			productoResponseModel.setIdEstatus(2);
@@ -121,7 +121,7 @@ public class ProductosServiceImpl implements ProductosService {
 			productosEntity.setId(request.getId());
 			productosEntity.setNombre(request.getNombre());
 			productosEntity.setPrecio(request.getPrecio());
-			productosEntity.setStock(request.getCantidad());
+			productosEntity.setStock(request.getStock());
 			this.productosDAO.delete(productosEntity);
 			ProductoResponseModel productoResponseModel = new ProductoResponseModel();
 			productoResponseModel.setEstatus("El producto " + request.getId() + " ha sido dado de baja");

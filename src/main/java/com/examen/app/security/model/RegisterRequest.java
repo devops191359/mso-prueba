@@ -1,6 +1,6 @@
 package com.examen.app.security.model;
 
-import com.examen.app.security.entidad.Role;
+import com.examen.app.security.entidad.RolEntity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -17,5 +17,5 @@ public class RegisterRequest {
 	private String lastname;
 	private String email;
 	private String password;
-	private Role role;
+	private RolEntity role;
 }

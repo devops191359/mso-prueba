@@ -23,5 +23,5 @@ public class ProductoUpdRequestModel implements Serializable{
 
 	private BigDecimal precio;
 
-	private Integer cantidad;
+	private Integer stock;
 }
